@@ -58,10 +58,12 @@ def _preprocess_data(data):
     # ---------------------------------------------------------------
 
     # ----------- Replace this code with your own preprocessing steps --------
-    predict_vector = feature_vector_df[['Madrid_wind_speed','Bilbao_rain_1h','Valencia_wind_speed']]
+    #predict_vector = feature_vector_df[['Madrid_wind_speed','Bilbao_rain_1h','Valencia_wind_speed']]
+    feature_vector_df.drop(['time', 'Seville_pressure', 'Valencia_wind_deg', 'Valencia_pressure'], axis=1,inplace=True)
+    
     # ------------------------------------------------------------------------
 
-    return predict_vector
+    return feature_vector_df
 
 def load_model(path_to_model:str):
     """Adapter function to load our pretrained model into memory.
@@ -79,7 +81,7 @@ def load_model(path_to_model:str):
         The pretrained model loaded into memory.
 
     """
-    return pickle.load(open(path_to_model, 'rb'))
+    return pickle.load(open('my_model.pkl', 'rb'))
 
 
 """ You may use this section (above the make_prediction function) of the python script to implement 
